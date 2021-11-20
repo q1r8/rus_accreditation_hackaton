@@ -12,7 +12,7 @@ from handlers.model import ArcMarginProduct, Model, CFG, TextDataset
 
 
 app = Flask(__name__, template_folder='template')
-CORS(app, support_credentials=True, origins=['http://51.250.10.93:3000', 'http://10.128.0.4:3000', 'http://localhost:3000'])
+CORS(app, support_credentials=True, origins='*')
 app.config['SECRET_KEY'] = '1231K3M21EDK12K'
 app.config['CORS_HEADERS'] = 'Content-Type'
 
