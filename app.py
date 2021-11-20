@@ -65,7 +65,7 @@ def get_model_response():
         model_response = {'model_response_category_code':predict_category,\
                           'model_response_category_name':category_name,
                           'success': 'ok'}
-    return jsonify(model_response)
+    return jsonify(model_response).headers.add("Access-Control-Allow-Origin", "*")
 
 
 @app.route("/")
