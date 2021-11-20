@@ -25,7 +25,7 @@ base_file = pd.read_csv('models/df_with_embs.csv')
 categories_matching = pd.read_csv('categories_code_namings.csv')
 
 model = Model(bert_model, num_classes=base_file.shape[1])
-model.load_state_dict(torch.load('./models/model(1).pt', map_location=torch.device('cpu')))
+model.load_state_dict(torch.load('./models/model.pt', map_location=torch.device('cpu')))
 model.cpu()
 
 
