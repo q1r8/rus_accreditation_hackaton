@@ -1,0 +1,48 @@
+.wrapper {
+  /* background: url('../../assets/bg-ai.jpg') no-repeat top center/100%; */
+  background-size: cover;
+  /* background-color: #000933; */
+  height: calc(100vh);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+}
+
+.contentBlock {
+  border: 2px solid #ffffff;
+  border-radius: 15px;
+  padding: 10px;
+  padding-bottom: 0px;
+  background-color: #e7e4df;
+  margin-bottom: 20px !important;
+}
+
+.categoryBlock {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.categoryBlock__valueText {
+  margin-bottom: 10px !important;
+}
+
+.confidenceDegree {
+  border: 2px solid #ffffff;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  max-width: 120px;
+  margin-left: auto;
+  text-align: center;
+}
+
+.categoryBlock__text {
+  padding: 10px;
+}
