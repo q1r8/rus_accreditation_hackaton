@@ -40,8 +40,9 @@ def get_predicts(model, dataloader):
 
 @app.route('/model_inference', methods=['POST', 'GET'])
 def get_model_response():
+    print('request_1')
     if request.method == 'POST':
-        render_template('index.html')
+        print('request_1')
         response_df = pd.DataFrame([{'Общее наименование продукции':request.json['description']}])
         dataset = TextDataset(response_df.iloc[0:1, :], tokenizer, max_length=CFG.max_length, mode='test')
         dataloader = torch.utils.data.DataLoader(dataset,
