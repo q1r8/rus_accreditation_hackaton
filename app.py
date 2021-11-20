@@ -12,7 +12,7 @@ from handlers.model import ArcMarginProduct, Model, CFG, TextDataset
 
 
 app = Flask(__name__, template_folder='template')
-CORS(app, support_credentials=True, origins='*')
+CORS(app, support_credentials=True)
 app.config['SECRET_KEY'] = '1231K3M21EDK12K'
 app.config['CORS_HEADERS'] = 'Content-Type'
 
@@ -39,11 +39,12 @@ def get_predicts(model, dataloader):
 
 
 @app.route('/model_inference', methods=['POST', 'GET'])
-@cross_origin(support_credentials=True, origin='*')
 def get_model_response():
-    print('request_1')
-    if request.method == 'POST':
-        print('request_1')
+    if request.method == "OPTIONS": # CORS preflight
+        return _build_cors_prelight_response()
+    elif request.method == 'POST':
+        print(request.json)
+        # render_template('index.html')
         response_df = pd.DataFrame([{'Общее наименование продукции':request.json['description']}])
         dataset = TextDataset(response_df.iloc[0:1, :], tokenizer, max_length=CFG.max_length, mode='test')
         dataloader = torch.utils.data.DataLoader(dataset,
@@ -62,22 +63,26 @@ def get_model_response():
         dists = np.sum((np.square(preds[0][0].cpu().detach().numpy() - base_file.values.T)), axis=1)
         indices = np.argsort(dists)
         predict_category = str(int(base_file.columns[indices[0]]) / 100)
+        print(predict_category)
         category_name = categories_matching[categories_matching\
                         ['Раздел ЕП РФ (Код из ФГИС ФСА для подкатегории продукции)'] == predict_category]\
-                        ['Подкатегория продукции'].values[0]
+                        ['Подкатегория продукции'][0]
         model_response = {'model_response_category_code':predict_category,\
                           'model_response_category_name':category_name,
                           'success': 'ok'}
-    return jsonify(model_response)
+    return _corsify_actual_response(jsonify(model_response))
+    # return render_template('index.html')
 
 
-@app.after_request
-def add_headers(response):
-    response.headers.add('Content-Type', 'application/json')
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    response.headers.add('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS')
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-    response.headers.add('Access-Control-Expose-Headers', 'Content-Type,Content-Length,Authorization,X-Pagination')
+def _build_cors_prelight_response():
+    response = make_response()
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add('Access-Control-Allow-Headers', "*")
+    response.headers.add('Access-Control-Allow-Methods', "*")
+    return response
+
+def _corsify_actual_response(response):
+    response.headers.add("Access-Control-Allow-Origin", "*")
     return response
 
 
