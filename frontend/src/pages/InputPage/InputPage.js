@@ -65,6 +65,7 @@ const InputPage = () => {
         },
         {
           headers: {
+            'Access-Control-Allow-Origin': '*',
             "Content-type": "application/json; charset=UTF-8",
             'withCredentials': 'true'
           },
