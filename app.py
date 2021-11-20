@@ -70,6 +70,10 @@ def get_model_response():
     return jsonify(model_response)
 
 
+@app.after_request
+def per_request_callbacks(response):
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
 
 
 @app.route("/")
