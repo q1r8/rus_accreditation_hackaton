@@ -42,6 +42,7 @@ def get_predicts(model, dataloader):
 @cross_origin()
 def get_model_response():
     if request.method == 'POST':
+        render_template('index.html')
         response_df = pd.DataFrame([{'Общее наименование продукции':request.json['description']}])
         dataset = TextDataset(response_df.iloc[0:1, :], tokenizer, max_length=CFG.max_length, mode='test')
         dataloader = torch.utils.data.DataLoader(dataset,
