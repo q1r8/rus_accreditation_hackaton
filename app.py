@@ -41,8 +41,6 @@ def get_predicts(model, dataloader):
 @app.route('/model_inference', methods=['POST', 'GET'])
 def get_model_response():
     if request.method == 'POST':
-        print(request.json)
-        # render_template('index.html')
         response_df = pd.DataFrame([{'Общее наименование продукции':request.json['description']}])
         dataset = TextDataset(response_df.iloc[0:1, :], tokenizer, max_length=CFG.max_length, mode='test')
         dataloader = torch.utils.data.DataLoader(dataset,
@@ -61,15 +59,13 @@ def get_model_response():
         dists = np.sum((np.square(preds[0][0].cpu().detach().numpy() - base_file.values.T)), axis=1)
         indices = np.argsort(dists)
         predict_category = str(int(base_file.columns[indices[0]]) / 100)
-        print(predict_category)
         category_name = categories_matching[categories_matching\
                         ['Раздел ЕП РФ (Код из ФГИС ФСА для подкатегории продукции)'] == predict_category]\
-                        ['Подкатегория продукции'][0]
+                        ['Подкатегория продукции'].values[0]
         model_response = {'model_response_category_code':predict_category,\
                           'model_response_category_name':category_name,
                           'success': 'ok'}
     return jsonify(model_response)
-    # return render_template('index.html')
 
 
 @app.route("/")
