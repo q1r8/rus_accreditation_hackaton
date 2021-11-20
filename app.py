@@ -39,7 +39,6 @@ def get_predicts(model, dataloader):
 
 
 @app.route('/model_inference', methods=['POST', 'GET'])
-@cross_origin()
 def get_model_response():
     if request.method == 'POST':
         render_template('index.html')
@@ -68,12 +67,6 @@ def get_model_response():
                           'model_response_category_name':category_name,
                           'success': 'ok'}
     return jsonify(model_response)
-
-
-@app.after_request
-def per_request_callbacks(response):
-    response.headers['Access-Control-Allow-Origin'] = '*'
-    return response
 
 
 @app.route("/")
