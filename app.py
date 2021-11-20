@@ -39,7 +39,7 @@ def get_predicts(model, dataloader):
 
 
 @app.route('/model_inference', methods=['POST', 'GET'])
-@cross_origin
+@cross_origin(origin='*')
 def get_model_response():
     print('request_1')
     if request.method == 'POST':
