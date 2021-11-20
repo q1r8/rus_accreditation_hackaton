@@ -38,7 +38,7 @@ def get_predicts(model, dataloader):
     return preds
 
 
-@app.route('/model_inference', methods=['POST', 'GET'])
+@app.route('/model_inference', methods=['POST', 'GET', 'OPTIONS'])
 def get_model_response():
     if request.method == "OPTIONS": # CORS preflight
         return _build_cors_prelight_response()
