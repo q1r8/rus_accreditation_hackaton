@@ -39,6 +39,7 @@ def get_predicts(model, dataloader):
 
 
 @app.route('/model_inference', methods=['POST', 'GET'])
+@cross_origin()
 def get_model_response():
     if request.method == 'POST':
         response_df = pd.DataFrame([{'Общее наименование продукции':request.json['description']}])
@@ -65,8 +66,7 @@ def get_model_response():
         model_response = {'model_response_category_code':predict_category,\
                           'model_response_category_name':category_name,
                           'success': 'ok'}
-    return jsonify(model_response).headers.add("Access-Control-Allow-Origin", "*")
-
+    return jsonify(model_response)
 
 @app.route("/")
 def index():
