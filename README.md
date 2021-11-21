@@ -8,7 +8,13 @@ sh load_model.sh
 *   source venv/bin/activate
 *   pip install -r requirements.txt
 
-# Для запуска сервиса выполните команду:
+*   cd frontend
+*   npm i
 
-sh entrypoint.sh
+# Для запуска фронта
+*   npm start
+
+# Для запуска бекенда
+*   python app.py
+
 
