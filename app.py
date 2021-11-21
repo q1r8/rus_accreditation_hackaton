@@ -64,7 +64,7 @@ def get_model_response():
         print(predict_category)
         category_name = categories_matching[categories_matching\
                         ['Раздел ЕП РФ (Код из ФГИС ФСА для подкатегории продукции)'] == predict_category]\
-                        ['Подкатегория продукции'][0]
+                        ['Подкатегория продукции'].values[0]
         model_response = {'model_response_category_code':predict_category,\
                           'model_response_category_name':category_name,
                           'success': 'ok'}
