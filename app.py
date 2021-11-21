@@ -41,9 +41,9 @@ def get_predicts(model, dataloader):
 @app.route('/model_inference', methods=['POST', 'GET'])
 def get_model_response():
     if request.method == 'POST':
-        print(request.json)
+#         print(request.json)
         # render_template('index.html')
-        response_df = pd.DataFrame([{'Общее наименование продукции':request.json['description']}])
+        response_df = pd.DataFrame([{'Общее наименование продукции':request.form['product_description']}])
         dataset = TextDataset(response_df.iloc[0:1, :], tokenizer, max_length=CFG.max_length, mode='test')
         dataloader = torch.utils.data.DataLoader(dataset,
                                                  batch_size=1,
@@ -68,8 +68,9 @@ def get_model_response():
         model_response = {'model_response_category_code':predict_category,\
                           'model_response_category_name':category_name,
                           'success': 'ok'}
-    return jsonify(model_response)
-    # return render_template('index.html')
+        flash(model_response['model_response_category_code'])
+#     return jsonify(model_response)
+    return render_template('index (1).html')
 
 
 @app.route("/")
