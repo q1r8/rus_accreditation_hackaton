@@ -62,9 +62,14 @@ def get_model_response():
         indices = np.argsort(dists)
         predict_category = str(int(base_file.columns[indices[0]]) / 100)
         print(predict_category)
-        category_name = categories_matching[categories_matching\
+        try:
+            category_name = categories_matching[categories_matching\
                         ['Раздел ЕП РФ (Код из ФГИС ФСА для подкатегории продукции)'] == predict_category]\
                         ['Подкатегория продукции'].values[0]
+        except:
+            return jsonify({'model_response_category_code':0,\
+                          'model_response_category_name':'Категории для такого описания не нашлось',
+                          'success': 'ok'})
         model_response = {'model_response_category_code':predict_category,\
                           'model_response_category_name':category_name,
                           'success': 'ok'}
