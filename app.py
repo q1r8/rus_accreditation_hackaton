@@ -72,6 +72,31 @@ def get_model_response():
     # return render_template('index.html')
 
 
+@app.route('/upload_file', methods=['POST', 'GET'])
+def search_trash_in_db():
+    # file = request.files['file']
+    print(request.files)
+    '''
+    Файл, который приходит с формы, привести к виду файла (если нужно), который мы получали и сохранить в df_db
+    '''
+    df_db['predict'] = None
+    for ind in range(df_db.shape[0]-1):
+        dataset = TextDataset(df_db.iloc[ind:ind+1, :], tokenizer, max_length=CFG.max_length)
+        dataloader = torch.utils.data.DataLoader(dataset,
+                                         batch_size=1,
+                                         num_workers=CFG.num_workers,
+                                         shuffle=True)
+        predicts = get_predicts(model, dataloader)[0][0].cpu().detach().numpy()
+
+        dists = np.sum((np.square(predicts - base_file.values.T)), axis=1)
+        indices = np.argsort(dists)
+        predict_category = base_file.columns[indices[0]]
+        df_db.loc[ind, 'predict'] = predict_category
+        indexes = df_db[df_db['predict'] != df_db\
+                      ['Раздел ЕП РФ (Код из ФГИС ФСА для подкатегории продукции)']].index
+    return jsonify(df_db.iloc[indexes])
+
+
 @app.route("/")
 def index():
     return render_template('index.html')
