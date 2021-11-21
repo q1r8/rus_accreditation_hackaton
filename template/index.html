@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href={{ url_for('static', filename='css/style.css')}}>
+</head>
+<body>
+  <div class="container">
+    <div class="navbar">
+      <div class="wrapper">
+        <div class="navbar-container">
+          <div class="navbar__title">
+            Каникулы Бонифация (NapIT)
+          </div>
+          <a href="#try" class="button-link">
+            <div class="button">
+              Попробуйте сами
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="wrapper">
+      <div class="card">
+        <div class="card__topblock">
+          <div class="card-item">
+            <div class="card-item__title">Категория и подкатегория, присвоенные пользователем</div>
+            <div class="card-item__text">3453 Электротранспорт производственный напольный безрельсовый, электрооборудование и приспособления к нему</div>
+            <div class="card-item__text">3453.02 Электротранспорт производственный напольный безрельсовый, электрооборудование и приспособления к нему</div>
+          </div>
+          <div class="confidence-degree">
+            <div class="confidence-degree__text">
+              Степень уверенности
+            </div>
+            <div class="confidence-degree__count">
+              76
+            </div>
+          </div>
+        </div>
+        <div class="card-item">
+          <div class="card-item__title">Общее наименование продукции</div>
+          <div class="card-item__text-block">«Долина Ледяного Ветра» (Icewind Dale trilogy, 1988—1990) — книжная трилогия Роберта Э. Сальваторе в жанре фэнтези. Состоит из романов «Магический Кристалл», «Серебряные Стрелы» и «Проклятие Рубина». Трилогия является первым опубликованным произведением Сальваторе и одним из первых художественных литературных произведений по вселенной Forgotten Realms. Трилогия выдержана в стиле приключенческого героического фэнтези с заметным элементом юмора.</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card__topblock">
+          <div class="card-item">
+            <div class="card-item__title">Категория и подкатегория, присвоенные пользователем</div>
+            <div class="card-item__text">3453 Электротранспорт производственный напольный безрельсовый, электрооборудование и приспособления к нему</div>
+            <div class="card-item__text">3453.02 Электротранспорт производственный напольный безрельсовый, электрооборудование и приспособления к нему</div>
+          </div>
+          <div class="confidence-degree passed">
+            <div class="confidence-degree__text">
+              Степень уверенности
+            </div>
+            <div class="confidence-degree__count">
+              100
+            </div>
+          </div>
+        </div>
+        <div class="card-item">
+          <div class="card-item__title">Общее наименование продукции</div>
+          <div class="card-item__text-block">«Долина Ледяного Ветра» (Icewind Dale trilogy, 1988—1990) — книжная трилогия Роберта Э. Сальваторе в жанре фэнтези. Состоит из романов «Магический Кристалл», «Серебряные Стрелы» и «Проклятие Рубина». Трилогия является первым опубликованным произведением Сальваторе и одним из первых художественных литературных произведений по вселенной Forgotten Realms. Трилогия выдержана в стиле приключенческого героического фэнтези с заметным элементом юмора.</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card__topblock">
+          <div class="card-item">
+            <div class="card-item__title">Категория и подкатегория, присвоенные пользователем</div>
+            <div class="card-item__text">3453 Электротранспорт производственный напольный безрельсовый, электрооборудование и приспособления к нему</div>
+            <div class="card-item__text">3453.02 Электротранспорт производственный напольный безрельсовый, электрооборудование и приспособления к нему</div>
+          </div>
+          <div class="confidence-degree failed">
+            <div class="confidence-degree__text">
+              Степень уверенности
+            </div>
+            <div class="confidence-degree__count ">
+              45
+            </div>
+          </div>
+        </div>
+        <div class="card-item">
+          <div class="card-item__title">Общее наименование продукции</div>
+          <div class="card-item__text-block">«Долина Ледяного Ветра» (Icewind Dale trilogy, 1988—1990) — книжная трилогия Роберта Э. Сальваторе в жанре фэнтези. Состоит из романов «Магический Кристалл», «Серебряные Стрелы» и «Проклятие Рубина». Трилогия является первым опубликованным произведением Сальваторе и одним из первых художественных литературных произведений по вселенной Forgotten Realms. Трилогия выдержана в стиле приключенческого героического фэнтези с заметным элементом юмора.</div>
+        </div>
+      </div>
+      <div class="divider" id="try"></div>
+      <div class="form-container">
+        <div class="form-block">
+          <form class="form" id="form">
+            <div class="inputcontainer">
+              <textarea 
+                class="datainput"
+                autofocus
+                placeholder="Введите общее наименование продукции" 
+                rows="5" cols="110"
+                id="descr" 
+                type="text"
+                name="text"></textarea>
+            </div>
+            <div class="buttoncontainer">
+              <input class="button" type="submit">
+            </div>
+          </form>
+        </div>
+      </div>
+      <div>
+        В поле ниже вы можете вписать описание продукта либо выбрать из предложенного, после чего нажать отправить и наша модель автоматически подберет наиболее подходящую подкатегорию и категорию товара.
+      </div>
+      <div>
+        Пример 1
+      </div>
+    </div>
+  </div>
+  <script>
+    async function sendForm(e)
+        {
+            e.preventDefault();
+            let response = await fetch('http://localhost:5000/model_inference', {
+                method: 'POST',         
+                body: new FormData(form)
+            });
+
+            let result = await response.json();
+
+            console.log(result);
+        };
+        form.onsubmit = sendForm;
+
+    // const input = document.getElementById('descr');
+    // const timeOutId;
+
+    // input.oninput = function() {
+      
+    //   clearTimeout(timeOutId);
+    //   timeOutId = setTimeout(() => console.log('sdfsdfsdf'), 500);
+    // };
+
+  </script>
+</body>
+</html>

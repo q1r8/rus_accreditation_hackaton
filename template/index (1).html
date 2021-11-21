@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .inputcontainer {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <form action="/model_inference" method="post">
+    <div class="inputcontainer">
+      <label for="descr">Введите описание</label>
+      <textarea id="descr" type="text" name="product_description"></textarea>
+    </div>
+    <div class="inputcontainer">
+      <label for="code">Введите код</label>
+      <input id="code" type="text" name="product_code">
+    </div>
+    <div class="inputcontainer">
+      <label for="category">Введите категорию</label>
+      <input id="category" type="text" name="product_category">
+    </div>
+    <div>
+      <input type="submit">
+    </div>
+  </form>
+
+{% for msg in get_flashed_messages() %}
+<div class='flash'>{{msg}}</div>
+{% endfor %}
+
+</body>
+</html>
