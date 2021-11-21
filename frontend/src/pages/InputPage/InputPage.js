@@ -59,7 +59,7 @@ const InputPage = () => {
     setMessageSent(true);
 
     try {
-      await axios.post('http://10.128.0.4:5000/model_inference', 
+      await axios.post('http://0.0.0.0:5000/model_inference', 
         {
           description,
         },
