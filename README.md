@@ -2,7 +2,7 @@
 ## Необходим python3.8 и Node.js LTS
 
 *   git clone https://github.com/q1r8/rus_accreditation_hackaton.git
-*   gut checkout inference
+*   gшt checkout inference
 
 Чтобы загрузить модели и необходимые файлы выполните команды:
 *   python3 -m virtualenv venv
